@@ -33,14 +33,29 @@ public class Program
             }
             else
             {
-                parseMove(move);
+                int[] newSquare = parseMove(move);
+                chessboard = moveKnight(newSquare);
+                printChessboard(chessboard);
             }
         }
     }
 
     public static int[] parseMove(string move)
     {
-        return [0,0];
+        string rows = "abcdefgh";
+        string cols = "12345678";
+
+        int row = rows.IndexOf(move[0]);
+        int col = cols.IndexOf(move[1]);
+        return [row,col];
+    }
+
+    public static int[,] moveKnight(int[] square)
+    {
+        // doing it this way so i can black out already-visited squares later
+        int[,] output = {{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0}};
+        output[square[0], square[1]] = 1;
+        return output;
     }
 
     public static void printChessboard(int[,] chessboard)

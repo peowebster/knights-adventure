@@ -9,14 +9,38 @@ public class Program
         chessboard[3,5] = 1;
 
         bool quit = false;
+        string validrows = "abcdefgh";
+        string validcols = "12345678";
 
+        printChessboard(chessboard);
         while (!quit)
         {
-            printChessboard(chessboard);
-            Console.Write("Enter Move: ");
+            Console.Write("Enter Move, or press Q to quit: ");
             string move = Console.ReadLine();
-            Console.WriteLine(move); 
+            move = move.ToLower();
+
+            if (move == "q")
+            {
+                break;
+            }
+            else if (move.Length != 2)
+            {
+                Console.WriteLine("Invalid move - bad character count.");
+            }
+            else if (!validrows.Contains(move[0]) || !validcols.Contains(move[1]))
+            {
+                Console.WriteLine("Invalid move - " + move + " is not a legal square");
+            }
+            else
+            {
+                parseMove(move);
+            }
         }
+    }
+
+    public static int[] parseMove(string move)
+    {
+        return [0,0];
     }
 
     public static void printChessboard(int[,] chessboard)

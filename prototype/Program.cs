@@ -61,9 +61,13 @@ public class Program
     public static void printChessboard(int[,] chessboard)
     {
         bool squareParity = true;
+        string rows = "abcdefgh";
+
+        Console.WriteLine("  1 2 3 4 5 6 7 8");
 
         for(int i = 0; i < 8; i++)
         {
+            Console.Write(rows[i] + " ");
             for(int j = 0; j < 8; j++)
             {
                 if(chessboard[i,j] == 0)
